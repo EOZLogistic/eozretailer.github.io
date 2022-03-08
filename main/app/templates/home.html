@@ -1,0 +1,283 @@
+{% extends 'layout.html' %} {% block body %} <style>
+    #cert {
+        width: 100%;
+        margin: 5%
+    }
+
+    #cert td {}
+
+    #cert img {
+        float: left;
+    }
+
+    #cate {
+        width: 100%;
+        text-align: center;
+    }
+
+    #cate td {
+        padding: 1%;
+        margin: 10%;
+        width: 20%;
+    }
+
+    #cate td:first-child {background-color: #3bdec0}
+
+    #cate td:nth-child(2) {
+        background-color: #66e5ce
+    }
+
+    #cate td:nth-child(3) {
+        background-color: #92eddc
+    }
+
+    #cate td:nth-child(4) {
+        background-color: #bef4ea
+    }
+
+    #cate td:nth-child(5) {
+        background-color: #e9fbf8
+    }
+
+    .carousel-inner {
+        margin-left: 0px
+    }
+    .subcate {
+        width: 100%;
+    }
+
+    .subcate tr {
+        display: none;
+        background-color:#CAF6EE ;
+        padding: 5%;
+
+    }
+    .subcate td{
+        padding: 1%;
+
+    }
+    .select {
+        text-decoration: underline;
+    }
+
+    #cate td:hover {
+        background-color: #0f574a;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    main{
+        margin: 5%;
+    }
+    .subcate td:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    aside{
+background-color:#DDE5E3;
+padding: 5%;
+    }
+    section{
+        width: 23vw;
+        height: 23vw;
+        display: inline-block;
+        background-color: white;
+        border-radius: 5px;
+        margin: 1%;
+        padding: 1%;
+    }
+    section button{
+        float: right;
+        border-radius: 5px;
+        background-color: #00DAB3;
+        font-weight: bold;
+
+    }
+    section a{
+        border-style: solid;
+        border-color: black;
+        background-color: #00DAB3;
+        border-radius: 10px;
+        padding: 1%;
+        display: flex;
+        width: fit-content;
+        border-width: thin;
+        color:white!important;
+        
+    }
+</style> {% if username %} <div class="jumbotron text-center">
+    <h1>Welcome to home page, </h1>
+    <p class="lead">{{ username }}</p>
+</div> {% endif %} <br>
+<br> {% if not username %} <div class="container-fluid" style="background-color: #c9f6ee; margin-top: -50px; margin-left:-110px; width: 1330px;
+    height: 420px;">
+    <div class="card" style="position: absolute;
+        width: 178px;
+        height: 71px;
+        left: 816px;
+        top: 300px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(31px);
+        z-index:1">
+        <div class="card-body">
+            <h4 class="card-title" style="font-family: roboto, serif; font-weight:bold; font-size: 8px;">Kitchen Set
+                Sales 50% off</h4>
+            <p class="card-text" style="font-family: roboto, serif; color: #898989; font-size: 8px">Plates & Pan
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fa fa-long-arrow-right"></i></p>
+        </div>
+    </div>
+    <div class="card" style="position: absolute;
+        width: 258px;
+        height: 221px;
+        left: 216px;
+        top: 100px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(31px);
+        z-index:1">
+        <div class="card-body">
+            <h4 class="card-title" style="font-family: roboto, serif; font-weight:bold; font-size: 17px;">High quality
+                furniture just for You!</h4>
+            <br>
+            <p class="card-text" style="font-family: roboto, serif; color: #898989; font-size: 12px">Our furniture is
+                made from selected and best quality materials that are suitable for your dream home.</p>
+            <a href="#" class="btn btn-primary stretched-link" style="background-color: rgba(85, 124, 117, 0.8);">Shop
+                Now!</a>
+        </div>
+    </div>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="z-value: -1">
+        <div class="carousel-inner" style="margin-left: 0px;">
+            <div class="carousel-item active">
+                <img class="d-lg-block" src="/static/images/slide1.png" alt="First slide" style="width: 628px;
+                height: 372px;
+                color:transparent;
+                z-index: -1;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-lg-block" src="/static/images/slide2.png" alt="Second slide" style="width: 628px;
+                height: 372px;
+                color:transparent;
+                z-index: -1;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-lg-block" src="/static/images/slide3.png" alt="Third slide" style="width: 628px;
+                height: 372px;
+                color:transparent;
+                z-index: -1;">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div> {% endif %} </div>
+    <table id=cert>
+        <tr>
+            <td>
+                <img src='static/images/cert1.png'>
+                <b> High Quality</b><br> Crafted from top materials
+            </td>
+            <td>
+                <img src='static/images/cert2.png'>
+                <b>Warrany Protection</b><br> Over 2 years
+            </td>
+            <td>
+                <img src='static/images/cert3.png'>
+                <b>Free Shipping</b><br> Order over $150
+            </td>
+            <td>
+                <img src='static/images/cert4.png'>
+                <b>24 /7 Support</b><br> Dedicated support
+            </td>
+        </tr>
+    </table>
+<main>
+
+    <table id=cate>
+        <tr>
+            <td class=select cate=furn>Furniture</td>
+            <td cate=elec>Eletronic</td>
+            <td cate=child>Child Care</td>
+            <td cate=clot>Clothes</td>
+            <td cate=beauty>Beauty Care</td>
+        </tr>
+    </table>
+    <table class=subcate>
+        <tr id=furn>
+            <td>Kitchen</td>
+            <td>Bathroom</td>
+            <td>Bedroom</td>
+            <td>Living Room</td>
+            <td>Backyard</td>
+            <td>Decoration</td>
+            <td>Guest Room</td>
+            <td>Others</td>
+        </tr>
+        <tr id=elec>
+            <td>Kitchen Appliances</td>
+            <td>Smart Home Devices</td>
+            <td>Digital Accessories</td>
+            <td>Video Games</td>
+            <td>Digital Camera</td>
+            <td>Computer Hardware</td>
+            <td>Notebook</td>
+            <td>Tablet</td>
+            <td>Network Equipment</td>
+        </tr>
+        <tr id=child>
+            <td>Toys</td>
+            <td>Clothing</td>
+            <td>Baby Products</td>
+            <td>Nutrition</td>
+            <td>Diapers</td>
+            <td>Milk Powder</td>
+            <td>Children Books</td>
+        </tr>
+        <tr id=clot>
+            <td>Ladies's Clothing</td>
+            <td>Ladies's Shoes</td>
+            <td>Ladies's Underwear / Logue</td>
+            <td>Men's Clothing</td>
+            <td>Men's Shoes</td>
+            <td>Sports Wear</td>
+            <td>Accessories</td>
+        </tr>
+        <tr id=beauty>
+            <td>Makeup</td>
+            <td>Perfume</td>
+            <td>Facial Kit</td>
+            <td>Body Care</td>
+            <td>Toiletries</td>
+            <td>Beauty Equipment</td>
+            <td>Hair Care</td>
+        </tr>
+    </table>
+    <aside>
+
+    </aside>
+</main>
+<script>
+
+    $('#' + $('.select').attr('cate')).show()
+    $('#cate td').click(function () {
+        $('.select').removeClass('select')
+        $(this).addClass('select')
+        $('.subcate tr').hide()
+        $('#' + $('.select').attr('cate')).show()
+
+    })
+    eozlogistic='http://eozlogistic.ddns.net/'
+$.getJSON(eozlogistic+"/api", function( data ) {
+console.log(data)
+for (const [key,prod]of Object.entries(data)) {
+  console.log(prod);
+$('aside').append('<section><img src='+eozlogistic+'static/'+prod.Image+'></img><h3>'+
+    prod.Name+'</h3>'+prod.Description+'<br>$'+prod.Price+'<a>✪Immediate Shipping</a><button>BUY NOW</button></section>')
+}
+
+})
+
+</script> {% endblock %}

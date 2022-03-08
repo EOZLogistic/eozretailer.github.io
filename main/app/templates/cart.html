@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+</style>
+<br>
+<br>
+    <div>
+        <div class="container-fluid" style="height: 75px; width:1140px; margin-left:-15px; background-color: #9aecd5">
+            <i class="fa fa-shopping-cart" style="height:50px; weight:40px; margin-left:10px; margin-top:30px;">
+                <span style="position: absolute;
+                font-family: Roboto, serif;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
+                color: #000000;">&nbsp&nbsp&nbspShopping Cart
+                </span>
+            </i>
+        </div>
+        <div class="row" style="font-family: Roboto, serif; border-style: solid; border-width:5px; border-color: #ffffff; background-color: #c9f6ee">
+            <div class="col-75">
+              <div class="container">
+                  <div class="row">
+                    <div class="col-50" style="margin-left:50px; margin-top:10px; height: 250px; width: 450px; background-color: white;">
+                    <br><br>
+                      <h3>&nbsp&nbspBilling Address</h3>
+                      <br>
+                      <label for="fname">&nbsp&nbsp&nbsp&nbsp<i class="fa fa-user"></i>&nbspFull Name</label>
+                      <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                      <br>
+                      <label for="adr">&nbsp&nbsp&nbsp&nbsp<i class="fa fa-address-card-o"></i>&nbspAddress</label>
+                      <input type="text" id="adr" name="address" placeholder="street no.">
+                      <br>
+                      <label for="region">&nbsp&nbsp&nbsp&nbsp<i class="fa fa-institution"></i>&nbspRegion</label>
+                      <input type="text" id="region" name="region" placeholder="Kowloon">
+                    </div>
+                    <div class="col-25" style="margin-top:250px;">
+                    <div class="container">
+                        <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
+                        <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+                        <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+                        <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+                        <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+                        <hr>
+                        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+                    </div>
+                    </div>
+                        <div class="col-50" style="margin-top:550px; margin-left:-110px;">
+                            <br>
+                            <h3>&nbsp&nbspPayment</h3>
+                            <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+
+                            <div id="paypal-button-container"></div>
+
+                            <script>
+                            paypal.Buttons({
+
+                                // Sets up the transaction when a payment button is clicked
+                                createOrder: function(data, actions) {
+                                return actions.order.create({
+                                    purchase_units: [{
+                                    amount: {
+                                        value: '77.44' // Can reference variables or functions. Example: `value: document.getElementById('...').value`
+                                    }
+                                    }]
+                                });
+                                },
+                                // Finalize the transaction after payer approval
+                                onApprove: function(data, actions) {
+                                    return actions.order.capture().then(function(orderData) {
+                                        // Successful capture! For dev/demo purposes:
+                                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                                        var transaction = orderData.purchase_units[0].payments.captures[0];
+                                        alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                                    // When ready to go live, remove the alert and show a success message within this page. For example:
+                                    // var element = document.getElementById('paypal-button-container');
+                                    // element.innerHTML = '';
+                                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                                    // Or go to another URL:  actions.redirect('thank_you.html');
+                                });
+                            }
+                        }).render('#paypal-button-container');
+                    </script>
+                </div> 
+                <a href="/checkout">Procced to Checkout</a>
+            </div>
+        </div>
+        </div>
+    <div>
+{% endblock %}
