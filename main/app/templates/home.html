@@ -4,7 +4,9 @@
         margin: 5%
     }
 
-    #cert td {}
+    #cert td {
+
+    }
 
     #cert img {
         float: left;
@@ -108,14 +110,14 @@ padding: 5%;
     <h1>Welcome to home page, </h1>
     <p class="lead">{{ username }}</p>
 </div> {% endif %} <br>
-<br> {% if not username %} <div class="container-fluid" style="background-color: #c9f6ee; margin-top: -50px; margin-left:-110px; width: 1330px;
-    height: 420px;">
+<br> {% if not username %} 
+<div class="container-fluid" style="background-color: #c9f6ee; margin-top: -50px; margin-left:-110px; width: 1330px; height: 430px;">
     <div class="card" style="position: absolute;
         width: 178px;
         height: 71px;
-        left: 816px;
-        top: 300px;
-        background: rgba(255, 255, 255, 0.72);
+        left: 776px;
+        top: 400px;
+        background: rgba(255, 255, 255, 0.92);
         backdrop-filter: blur(31px);
         z-index:1">
         <div class="card-body">
@@ -129,22 +131,21 @@ padding: 5%;
         width: 258px;
         height: 221px;
         left: 216px;
-        top: 100px;
-        background: rgba(255, 255, 255, 0.72);
+        top: 80px;
+        background: rgba(255, 255, 255, 0.82);
         backdrop-filter: blur(31px);
         z-index:1">
         <div class="card-body">
-            <h4 class="card-title" style="font-family: roboto, serif; font-weight:bold; font-size: 17px;">High quality
-                furniture just for You!</h4>
+            <h4 class="card-title" style="font-family: roboto, serif; font-weight:bold; font-size: 17px;">High quality furniture just for You!</h4>
             <br>
             <p class="card-text" style="font-family: roboto, serif; color: #898989; font-size: 12px">Our furniture is
                 made from selected and best quality materials that are suitable for your dream home.</p>
-            <a href="#" class="btn btn-primary stretched-link" style="background-color: rgba(85, 124, 117, 0.8);">Shop
+            <a href="#" class="btn btn-primary stretched-link" style="background-color: rgba(85, 124, 117, 0.8); border:none">Shop
                 Now!</a>
         </div>
     </div>
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="z-value: -1">
-        <div class="carousel-inner" style="margin-left: 0px;">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="z-value: -1; padding-top: 50px">
+        <div class="carousel-inner" style="margin-left: 350px;">
             <div class="carousel-item active">
                 <img class="d-lg-block" src="/static/images/slide1.png" alt="First slide" style="width: 628px;
                 height: 372px;
@@ -174,28 +175,31 @@ padding: 5%;
         </a>
     </div>
 </div> {% endif %} </div>
-    <table id=cert>
-        <tr>
-            <td>
-                <img src='static/images/cert1.png'>
-                <b> High Quality</b><br> Crafted from top materials
-            </td>
-            <td>
-                <img src='static/images/cert2.png'>
-                <b>Warrany Protection</b><br> Over 2 years
-            </td>
-            <td>
-                <img src='static/images/cert3.png'>
-                <b>Free Shipping</b><br> Order over $150
-            </td>
-            <td>
-                <img src='static/images/cert4.png'>
-                <b>24 /7 Support</b><br> Dedicated support
-            </td>
-        </tr>
-    </table>
+    <div class="container-fluid">
+        <div class="container">
+            <table id=cert>
+                <tr>
+                    <td>
+                        <img src='static/images/cert1.png'>&nbsp
+                        <b> High Quality</b><br> &nbspCrafted from top materials
+                    </td>
+                    <td>
+                        <img src='static/images/cert2.png'>&nbsp
+                        <b>Warrany Protection</b><br> &nbspOver 2 years
+                    </td>
+                    <td>
+                        <img src='static/images/cert3.png'>&nbsp
+                        <b>Free Shipping</b><br> &nbspOrder over $150
+                    </td>
+                    <td>
+                        <img src='static/images/cert4.png'>&nbsp
+                        <b>24 /7 Support</b><br> &nbspDedicated support
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 <main>
-
     <table id=cate>
         <tr>
             <td class=select cate=furn>Furniture</td>
@@ -275,7 +279,7 @@ console.log(data)
 for (const [key,prod]of Object.entries(data)) {
   console.log(prod);
 $('aside').append('<section><img src='+eozlogistic+'static/'+prod.Image+'></img><h3>'+
-    prod.Name+'</h3>'+prod.Description+'<br>$'+prod.Price+'<a>✪Immediate Shipping</a><button>BUY NOW</button></section>')
+    prod.Name+'</h3>'+prod.Description+'<br>$'+prod.Price+'<a>✪Immediate Shipping</a><a href="/cart"><button>BUY NOW</a></button></section>')
 }
 
 })
