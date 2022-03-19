@@ -3,16 +3,55 @@
 
     <br>
     <br>
-    <h1>About Us</h1>
-    <br>
-    <br>
-    <p>This is EOZ online shop, we sell products. Please register a account if you haven't! After you registered successfully, You can enjoy our online services, including to order our products!</p>
-    <br>
-    <h3>Where are we?</h3>  
-    <iframe src="https://www.google.com/maps/d/embed?mid=1P49Ec-rR2cqLPMXsI4nkmqc0yYk" width="1100" height="500"></iframe>
-    <hr class="clearfix w-100 d-md-none pb-3">
-    <br><br>
-    <h3>How to Get There?</h3>
-    <p>Just get into the MTR station and find Exit C2, which leads to the Festival Walk shopping centre. Go up to Level LG1 and find the escalator next to Shop LG1-10, which will take you to one end of the CityU underpass. When you emerge from the underpass, CityU's main entrance is right in front of you.</p>
+    <h1>Checkout</h1>
+    <div class="col-50" style="margin-top:50px; margin:center;">
+        <div id="smart-button-container">
+            <div style="text-align: center;">
+              <div id="paypal-button-container"></div>
+            </div>
+          </div>
+        <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=HKD" data-sdk-integration-source="button-factory"></script>
+        <script>
+          function initPayPalButton() {
+            paypal.Buttons({
+              style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'horizontal',
+                label: 'paypal',
+                
+              },
+      
+              createOrder: function(data, actions) {
+                return actions.order.create({
+                  purchase_units: [{"amount":{"currency_code":"HKD","value":1}}]
+                });
+              },
+      
+              onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+                  
+                  // Full available details
+                  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+      
+                  // Show a success message within this page, e.g.
+                  const element = document.getElementById('paypal-button-container');
+                  element.innerHTML = '';
+                  element.innerHTML = '<h3>Thank you for your payment!</h3>';
+      
+                  // Or go to another URL:  actions.redirect('thank_you.html');
+                  
+                });
+              },
+      
+              onError: function(err) {
+                console.log(err);
+              }
+            }).render('#paypal-button-container');
+          }
+          initPayPalButton();
+        </script>
+    </div>
+    <a href="/success_checkout">checkout</a>
 
 {% endblock %}

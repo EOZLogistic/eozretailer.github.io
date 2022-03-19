@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session, logging, request
+from flask import Flask, render_template, request, flash, redirect, url_for, session, logging, request,jsonify, abort, make_response
 from flask_mysqldb import MySQL
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, IntegerField
 app = Flask(__name__)
 app.secret_key = 'eozretailer'
 
@@ -183,19 +183,62 @@ def comments():
     
     else:
         return render_template('home.html')
+class CartForm(Form):
+    Address = TextAreaField('Address')
+    Quantity_product1 = IntegerField('Product 1', [validators.Length(min=1, max=25)])
+    Quantity_product2 = IntegerField('Product 2', [validators.Length(min=1, max=25)])
+    Quantity_product3 = IntegerField('Product 3', [validators.Length(min=1, max=25)])
 
-@app.route('/cart')
+@app.route('/cart',  methods=['POST', 'GET'])
 def cart():
     if 'username' in session:
-        return render_template('cart.html')
+        form = CartForm(request.form)
+        if request.method == 'POST' and form.validate():
+            Address = form.address.data
+            Quantity_product1 = form.qty1.data
+            Quantity_product2 = form.qty2.data
+            Quantity_product3 = form.qty3.data
+
+            # Create cursor
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO Cart(Address, Quantity_product1, Quantity_product2, Quantity_product3) VALUES (%s, %s, %s, %s)", (address, qty_product1, qty_product2, qty_product3))
+            
+            # Commit to database
+            mysql.connection.commit()
+
+            # Close connection
+            cur.close()
+            session['username'] = username
+            flash("You registered successfully and logged in", "success")
+            return redirect(url_for('checkout'))
+        return render_template ('cart.html', form = form)
 
     else:
         return render_template('home.html')
 
-@app.route('/checkout')
+@app.route('/checkout', methods=['POST', 'GET'])
 def checkout():
     if 'username' in session:
+
         return render_template('checkout.html')
+
+    else:
+        return render_template('home.html')
+
+@app.route('/success_checkout')
+def success_checkout():
+    if 'username' in session:
+
+        return render_template('success_checkout.html')
+
+    else:
+        return render_template('home.html')
+
+@app.route('/ship_details')
+def ship_details():
+    if 'username' in session:
+
+        return render_template('ship_details.html')
 
     else:
         return render_template('home.html')

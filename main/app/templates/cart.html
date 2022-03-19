@@ -44,47 +44,28 @@
                         <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
                     </div>
                     </div>
-                        <div class="col-50" style="margin-top:550px; margin-left:-110px;">
-                            <br>
-                            <h3>&nbsp&nbspPayment</h3>
-                            <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-
-
-                            <div id="paypal-button-container"></div>
-
-                            <script>
-                            paypal.Buttons({
-
-                                // Sets up the transaction when a payment button is clicked
-                                createOrder: function(data, actions) {
-                                return actions.order.create({
-                                    purchase_units: [{
-                                    amount: {
-                                        value: '77.44' // Can reference variables or functions. Example: `value: document.getElementById('...').value`
-                                    }
-                                    }]
-                                });
-                                },
-                                // Finalize the transaction after payer approval
-                                onApprove: function(data, actions) {
-                                    return actions.order.capture().then(function(orderData) {
-                                        // Successful capture! For dev/demo purposes:
-                                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                                        var transaction = orderData.purchase_units[0].payments.captures[0];
-                                        alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
-                                    // When ready to go live, remove the alert and show a success message within this page. For example:
-                                    // var element = document.getElementById('paypal-button-container');
-                                    // element.innerHTML = '';
-                                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                                    // Or go to another URL:  actions.redirect('thank_you.html');
-                                });
-                            }
-                        }).render('#paypal-button-container');
-                    </script>
                 </div> 
                 <a href="/checkout">Procced to Checkout</a>
             </div>
         </div>
         </div>
     <div>
+    {% from "includes/_formhelpers.html" import render_field %}
+    <form method="POST" action="">
+        <div class="form-group">
+            {{render_field (form.address, class="form-control")}}
+        </div>
+        <div class="form-group">
+            {{render_field (form.qty1, class="form-control")}}
+        </div>
+        <div class="form-group">
+            {{render_field (form.qty2, class="form-control")}}
+        </div>
+        <div class="form-group">
+            {{render_field (form.qty3, class="form-control")}}
+        </div>
+        <p>
+            <input type="submit" class = "btn btn-primary" value="Submit" style="background: #557C75CC; border:none">
+        </p>
+    </form>
 {% endblock %}
