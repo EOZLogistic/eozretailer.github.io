@@ -1,6 +1,6 @@
 
 {% if username %}
-<nav class="navbar navbar-light" style="background-color:#caf6ee;">
+<nav class="navbar navbar-light" style="background-color:#caf6ee; z-value:-1;">
   <a class="navbar-brand" href="/home">
     <img src="/static/images/eoz.png" width="55" height="50" style="margin-left: 60px;">
   </a>
@@ -33,9 +33,9 @@
       </form>
     </div>
   </ul>
-  <img src="/static/images/wallet.png" width="20px" height="20px" style="margin-left: 5px; padding-top: -20px; padding-bottom: -20px;"> 
-  <img src="/static/images/cart.png" width="20px" height="20px" style="margin-left: 25px; padding-top: -20px; padding-bottom: -20px;">
-  <img src="/static/images/icon1.png" width="40px" height="40px"style="border-radius: 50%; margin-left: 25px; margin-right: 80px; padding-top: -20px; padding-bottom: -20px;">
+  <a href="/ship_details"><img src="/static/images/wallet.png" width="20px" height="20px" style="margin-left: 5px; padding-top: -20px; padding-bottom: -20px;"></a>
+  <a href="/cart"><img src="/static/images/cart.png" width="20px" height="20px" style="margin-left: 25px; padding-top: -20px; padding-bottom: -20px;"></a>
+  <a href="/logout"><img src="/static/images/icon1.png" width="40px" height="40px"style="border-radius: 50%; margin-left: 25px; margin-right: 80px; padding-top: -20px; padding-bottom: -20px;"></a>
 </nav>
 {% endif %}
 
