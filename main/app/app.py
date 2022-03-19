@@ -184,10 +184,10 @@ def comments():
     else:
         return render_template('home.html')
 class CartForm(Form):
-    Address = TextAreaField('Address')
-    Quantity_product1 = IntegerField('Product 1', [validators.Length(min=1, max=25)])
-    Quantity_product2 = IntegerField('Product 2', [validators.Length(min=1, max=25)])
-    Quantity_product3 = IntegerField('Product 3', [validators.Length(min=1, max=25)])
+    address = TextAreaField('Address')
+    qty_1 = IntegerField('Product 1', [validators.NumberRange(min=1, max=25)])
+    qty_2 = IntegerField('Product 2', [validators.NumberRange(min=1, max=25)])
+    qty_3 = IntegerField('Product 3', [validators.NumberRange(min=1, max=25)])
 
 @app.route('/cart',  methods=['POST', 'GET'])
 def cart():
@@ -195,9 +195,9 @@ def cart():
         form = CartForm(request.form)
         if request.method == 'POST' and form.validate():
             Address = form.address.data
-            Quantity_product1 = form.qty1.data
-            Quantity_product2 = form.qty2.data
-            Quantity_product3 = form.qty3.data
+            Quantity_product1 = form.qty_1.data
+            Quantity_product2 = form.qty_2.data
+            Quantity_product3 = form.qty_3.data
 
             # Create cursor
             cur = mysql.connection.cursor()
