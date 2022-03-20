@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session, logging, request,jsonify, abort, make_response
 from flask_mysqldb import MySQL
+from flask_restful import Api, Resource
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, IntegerField
+import requests
 app = Flask(__name__)
+api = Api(app)
 app.secret_key = 'eozretailer'
 
 #Config SQL
@@ -14,6 +17,8 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # Init MYSQL
 mysql = MySQL(app)
 
+Base = "http://eozlogistic.ddns.net/"
+response = requests.get(Base + "api")
 
 @app.route('/')
 @app.route('/home')
