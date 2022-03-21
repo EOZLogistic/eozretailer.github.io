@@ -1,6 +1,12 @@
 {% extends 'layout.html' %}
 {% block body %}
 <style>
+    table, th, td {
+          border: 1px solid black;
+    }
+    table {
+        width: 100%;
+    }
 </style>
 <br>
 <br>
@@ -16,57 +22,47 @@
                 </span>
             </i>
         </div>
-        <div class="row" style="font-family: Roboto, serif; border-style: solid; border-width:5px; border-color: #ffffff; background-color: #c9f6ee">
-            <div class="col-75">
-              <div class="container">
-                  <div class="row">
-                    <div class="col-50" style="margin-left:50px; margin-top:10px; height: 250px; width: 450px; background-color: white;">
-                    <br><br>
-                      <h3>&nbsp&nbspBilling Address</h3>
-                      <br>
-                      <label for="fname">&nbsp&nbsp&nbsp&nbsp<i class="fa fa-user"></i>&nbspFull Name</label>
-                      <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                      <br>
-                      <label for="adr">&nbsp&nbsp&nbsp&nbsp<i class="fa fa-address-card-o"></i>&nbspAddress</label>
-                      <input type="text" id="adr" name="address" placeholder="street no.">
-                      <br>
-                      <label for="region">&nbsp&nbsp&nbsp&nbsp<i class="fa fa-institution"></i>&nbspRegion</label>
-                      <input type="text" id="region" name="region" placeholder="Kowloon">
+        <div class="row" style="font-family: Roboto, serif; border-style: solid; border-width:5px; border-color: #ffffff; background-color:">
+            <div class="container">
+                <form method="POST" action="">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="form-group">
+                        <i class="fa fa-address-card-o"></i>
+                        {{render_field (form.address, class="form-control")}}
                     </div>
-                    <div class="col-25" style="margin-top:250px;">
-                    <div class="container">
-                        <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-                        <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-                        <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-                        <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-                        <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-                        <hr>
-                        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+                    <div class="form-group">
+                        <table>
+                        <tr>
+                            <th></th>
+                            <th>Product Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                        <tr>
+                            <td><img src="/static/images/1.jpg"></td>
+                            <td>$149.9</td>
+                            <td>{{render_field (form.qty_1, class="form-control")}}</td>
+                        </tr>
+                        <tr>
+                            <td><img src="/static/images/1.jpg"></td>
+                            <td>$749</td>
+                            <td>{{render_field (form.qty_2, class="form-control")}}</td>
+                        </tr>
+                        <tr>
+                            <td><img src="/static/images/1.jpg"></td>
+                            <td>$329.9</td>
+                            <td>{{render_field (form.qty_3, class="form-control")}}</td>
+                        </tr>
+                        </table>
                     </div>
-                    </div>
-                </div> 
-                <a href="/checkout">Procced to Checkout</a>
+                    <p>
+                        <button type="submit" class = "btn btn-primary" value="Submit" style="background: #557C75CC; border:none; float: right;">Submit</button>
+                    </p>
+                </form>
+            </div>
+                <a href="/checkout" style="float: right">Proceed to Checkout</a>
             </div>
         </div>
         </div>
-    <div>
-    <div class="container" 
-    {% from "includes/_formhelpers.html" import render_field %}
-    <form method="POST" action="">
-        <div class="form-group">
-            {{render_field (form.address, class="form-control")}}
-        </div>
-        <div class="form-group">
-            {{render_field (form.qty_1, class="form-control")}}
-        </div>
-        <div class="form-group">
-            {{render_field (form.qty_2, class="form-control")}}
-        </div>
-        <div class="form-group">
-            {{render_field (form.qty_3, class="form-control")}}
-        </div>
-        <p>
-            <input type="submit" class = "btn btn-primary" value="Submit" style="background: #557C75CC; border:none">
-        </p>
-    </form>
+    </div>
+    </div>
 {% endblock %}

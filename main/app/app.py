@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from flask_mysqldb import MySQL
 from flask_restful import Api, Resource
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, IntegerField
-import requests
+import json, requests
 app = Flask(__name__)
 api = Api(app)
 app.secret_key = 'eozretailer'
@@ -10,7 +10,7 @@ app.secret_key = 'eozretailer'
 #Config SQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'svsuhsvud#3vxHia'
+app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'eozretailer'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
@@ -189,7 +189,7 @@ def comments():
     else:
         return render_template('home.html')
 class CartForm(Form):
-    address = TextAreaField('Address')
+    address = TextAreaField('Billing Address')
     qty_1 = IntegerField('Product 1', [validators.NumberRange(min=1, max=25)])
     qty_2 = IntegerField('Product 2', [validators.NumberRange(min=1, max=25)])
     qty_3 = IntegerField('Product 3', [validators.NumberRange(min=1, max=25)])
@@ -199,22 +199,20 @@ def cart():
     if 'username' in session:
         form = CartForm(request.form)
         if request.method == 'POST' and form.validate():
-            Address = form.address.data
-            Quantity_product1 = form.qty_1.data
-            Quantity_product2 = form.qty_2.data
-            Quantity_product3 = form.qty_3.data
+            address = form.address.data
+            qty_1 = form.qty_1.data
+            qty_2 = form.qty_2.data
+            qty_3 = form.qty_3.data
 
             # Create cursor
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO Cart(Address, Quantity_product1, Quantity_product2, Quantity_product3) VALUES (%s, %s, %s, %s)", (address, qty_product1, qty_product2, qty_product3))
+            cur.execute("INSERT INTO cart(address, qty_1, qty_2, qty_3) VALUES (%s, %s, %s, %s)", (address, qty_1, qty_2, qty_3))
             
             # Commit to database
             mysql.connection.commit()
 
             # Close connection
             cur.close()
-            session['username'] = username
-            flash("You registered successfully and logged in", "success")
             return redirect(url_for('checkout'))
         return render_template ('cart.html', form = form)
 
@@ -230,7 +228,7 @@ def checkout():
     else:
         return render_template('home.html')
 
-@app.route('/success_checkout')
+@app.route('/success_checkout', methods=['POST', 'GET'])
 def success_checkout():
     if 'username' in session:
 
