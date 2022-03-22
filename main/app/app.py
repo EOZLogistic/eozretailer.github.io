@@ -21,10 +21,7 @@ mysql = MySQL(app)
 @app.route('/')
 @app.route('/home')
 def home():
-    url = requests.get("http://eozlogistic.ddns.net/api")
-    text = url.text
-    data = json.load(text)
-    return render_template('home.html', url=url, text=text, data=data)
+    return render_template('home.html')
 
 @app.route('/about_us')
 def about():
