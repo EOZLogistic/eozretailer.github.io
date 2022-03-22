@@ -17,13 +17,14 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # Init MYSQL
 mysql = MySQL(app)
 
-Base = "http://eozlogistic.ddns.net/"
-response = requests.get(Base + "api")
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    url = requests.get("http://eozlogistic.ddns.net/api")
+    text = url.text
+    data = json.load(text)
+    return render_template('home.html', url=url, text=text, data=data)
 
 @app.route('/about_us')
 def about():
