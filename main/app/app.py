@@ -201,10 +201,11 @@ def cart():
             qty_1 = form.qty_1.data
             qty_2 = form.qty_2.data
             qty_3 = form.qty_3.data
+            total = qty_1*149.9 +qty_2*749 + qty_3*329.9
 
             # Create cursor
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO cart(address, qty_1, qty_2, qty_3) VALUES (%s, %s, %s, %s)", (address, qty_1, qty_2, qty_3))
+            cur.execute("INSERT INTO cart(address, qty_1, qty_2, qty_3, total) VALUES (%s, %s, %s, %s, %s)", (address, qty_1, qty_2, qty_3, total))
             
             # Commit to database
             mysql.connection.commit()
