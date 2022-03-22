@@ -116,13 +116,14 @@
 </style> 
     {% if username %} 
         <div class="jumbotron text-center">
-            <h1>Welcome to home page, </h1>
-            <p class="lead">{{ username }}</p>
+            <h1 style="font-family: 'Roboto';
+            font-style: normal;">Welcome to home page, </h1>
+            <p class="lead" style="font-family: 'Roboto';
+            font-style: normal;">{{ username }}</p>
         </div> 
     {% endif %} 
     <br>
     <br> 
-    {% if not username %} 
         <div class="container-fluid" style="background-color: #c9f6ee; margin-top: -50px; margin-left:-110px; width: 1330px; height: 430px;">
             <div class="card" style="position: absolute;
             width: 178px;
@@ -187,6 +188,7 @@
         </a>
     </div>
 </div> 
+
 </div> 
     <div class="container-fluid">
         <div class="container">
@@ -212,7 +214,6 @@
             </table>
         </div>
     </div>
-    {% endif %}
 <main>
     <table id="cate">
         <tr>

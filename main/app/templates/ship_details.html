@@ -3,6 +3,8 @@
 <style>
     table, th, td {
           border: 1px solid black;
+          font-family: 'Roboto';
+          font-style: normal;"
     }
     table {
         width: 100%;
@@ -11,9 +13,12 @@
 
     <br>
     <br>
-    <h1>Shipment Details</h1>
-    <h3>Cart no.:  {{cartDetails[0]['cartid']}}</h3>
-    <h3>Billing address:  {{cartDetails[0]['address']}}</h3>
+    <h1 style="font-family: 'Roboto';
+    font-style: bold;">Shipment Details</h1>
+    <h3 style="font-family: 'Roboto';
+    font-style: bold;">Cart no.:  {{cartDetails[0]['cartid']}}</h3>
+    <h3 style="font-family: 'Roboto';
+    font-style: bold;">Billing address:  {{cartDetails[0]['address']}}</h3>
     <table>
       <tr>
           <th></th>
