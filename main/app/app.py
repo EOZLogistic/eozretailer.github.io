@@ -10,7 +10,7 @@ app.secret_key = 'eozretailer'
 #Config SQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'svsuhsvud#3vxHia'
 app.config['MYSQL_DB'] = 'eozretailer'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
@@ -28,8 +28,6 @@ def home():
 @app.route('/about_us')
 def about():
     return render_template('about_us.html')
-
-
 class RegisterForm(Form):
     name = StringField('Name', [validators.length(min=1, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
@@ -222,9 +220,12 @@ def cart():
 @app.route('/checkout', methods=['POST', 'GET'])
 def checkout():
     if 'username' in session:
-
-        return render_template('checkout.html')
-
+        # Create cursor
+        cur = mysql.connection.cursor()
+        result = cur.execute("SELECT * FROM cart order by cartid DESC limit 1")
+        if result > 0:
+            cartDetails = cur.fetchall()
+            return render_template('checkout.html', cartDetails = cartDetails)
     else:
         return render_template('home.html')
 
@@ -240,9 +241,12 @@ def success_checkout():
 @app.route('/ship_details')
 def ship_details():
     if 'username' in session:
-
-        return render_template('ship_details.html')
-
+        # Create cursor
+        cur = mysql.connection.cursor()
+        result = cur.execute("SELECT * FROM cart")
+        if result > 0:
+            cartDetails = cur.fetchall()
+            return render_template('ship_details.html', cartDetails = cartDetails)
     else:
         return render_template('home.html')
 

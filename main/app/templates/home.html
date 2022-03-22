@@ -1,6 +1,6 @@
 {% extends 'layout.html' %} {% block body %} <style>
     #cert {
-        width: 100%;
+    width: 100%;
         margin: 5%
     }
 
@@ -106,16 +106,21 @@ padding: 5%;
         color:white!important;
         
     }
-</style> {% if username %} <div class="jumbotron text-center">
-    <h1>Welcome to home page, </h1>
-    <p class="lead">{{ username }}</p>
-</div> {% endif %} <br>
-<br> {% if not username %} 
-<div class="container-fluid" style="background-color: #c9f6ee; margin-top: -50px; margin-left:-110px; width: 1330px; height: 430px;">
-    <div class="card" style="position: absolute;
-        width: 178px;
-        height: 71px;
-        left: 776px;
+</style> 
+    {% if username %} 
+        <div class="jumbotron text-center">
+            <h1>Welcome to home page, </h1>
+            <p class="lead">{{ username }}</p>
+        </div> 
+    {% endif %} 
+    <br>
+    <br> 
+    {% if not username %} 
+        <div class="container-fluid" style="background-color: #c9f6ee; margin-top: -50px; margin-left:-110px; width: 1330px; height: 430px;">
+            <div class="card" style="position: absolute;
+            width: 178px;
+            height: 71px;
+            left: 776px;
         top: 400px;
         background: rgba(255, 255, 255, 0.92);
         backdrop-filter: blur(31px);
@@ -131,7 +136,7 @@ padding: 5%;
         width: 258px;
         height: 221px;
         left: 216px;
-        top: 80px;
+        top: 180px;
         background: rgba(255, 255, 255, 0.82);
         backdrop-filter: blur(31px);
         z-index:1">
@@ -174,10 +179,11 @@ padding: 5%;
             <span class="sr-only">Next</span>
         </a>
     </div>
-</div> {% endif %} </div>
+</div> 
+</div> 
     <div class="container-fluid">
         <div class="container">
-            <table id=cert>
+            <table id="cert">
                 <tr>
                     <td>
                         <img src='static/images/cert1.png'>&nbsp
@@ -199,20 +205,21 @@ padding: 5%;
             </table>
         </div>
     </div>
+    {% endif %}
 <main>
-    <table id=cate>
+    <table id="cate">
         <tr>
-            <td class=select cate=furn>Furniture</td>
-            <td cate=elec>Eletronic</td>
-            <td cate=child>Child Care</td>
-            <td cate=clot>Clothes</td>
-            <td cate=beauty>Beauty Care</td>
+            <td class="select" cate="furn">Furniture</td>
+            <td cate="elec">Eletronic</td>
+            <td cate="child">Child Care</td>
+            <td cate="clot">Clothes</td>
+            <td cate="beauty">Beauty Care</td>
         </tr>
     </table>
-    <table class=subcate>
-        <tr id=furn>
-            <td>Kitchen</td>
+    <table class="subcate">
+        <tr id="furn">
             <td>Bathroom</td>
+            <td>Kitchen</td>
             <td>Bedroom</td>
             <td>Living Room</td>
             <td>Backyard</td>
@@ -220,7 +227,7 @@ padding: 5%;
             <td>Guest Room</td>
             <td>Others</td>
         </tr>
-        <tr id=elec>
+        <tr id="elec">
             <td>Kitchen Appliances</td>
             <td>Smart Home Devices</td>
             <td>Digital Accessories</td>
@@ -231,7 +238,7 @@ padding: 5%;
             <td>Tablet</td>
             <td>Network Equipment</td>
         </tr>
-        <tr id=child>
+        <tr id="child">
             <td>Toys</td>
             <td>Clothing</td>
             <td>Baby Products</td>
@@ -240,7 +247,7 @@ padding: 5%;
             <td>Milk Powder</td>
             <td>Children Books</td>
         </tr>
-        <tr id=clot>
+        <tr id="clot">
             <td>Ladies's Clothing</td>
             <td>Ladies's Shoes</td>
             <td>Ladies's Underwear / Logue</td>
@@ -249,7 +256,7 @@ padding: 5%;
             <td>Sports Wear</td>
             <td>Accessories</td>
         </tr>
-        <tr id=beauty>
+        <tr id="beauty">
             <td>Makeup</td>
             <td>Perfume</td>
             <td>Facial Kit</td>

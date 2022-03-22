@@ -1,57 +1,91 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-    <br>
-    <br>
-    <h1>Checkout</h1>
-    <div class="col-50" style="margin-top:50px; margin:center;">
-        <div id="smart-button-container">
-            <div style="text-align: center;">
-              <div id="paypal-button-container"></div>
-            </div>
+<style>
+  table, th, td {
+        border: 1px solid black;
+  }
+  table {
+      width: 100%;
+  }
+</style>
+  <br>
+  <br>
+  <h1>Checkout</h1>
+  <br>
+  <br>
+  <h3>Cart no.:  {{cartDetails[0]['cartid']}}</h3>
+  <h3>Billing address:  {{cartDetails[0]['address']}}</h3>
+  <table>
+    <tr>
+        <th></th>
+        <th>Product Price</th>
+        <th>Quantity</th>
+    </tr>
+    <tr>
+        <td><img src="/static/images/1.jpg"></td>
+        <td>$149.9</td>
+        <td>{{cartDetails[0]['qty_1']}}</td>
+    </tr>
+    <tr>
+        <td><img src="/static/images/1.jpg"></td>
+        <td>$749</td>
+        <td>{{cartDetails[0]['qty_2']}}</td>
+    </tr>
+    <tr>
+        <td><img src="/static/images/1.jpg"></td>
+        <td>$329.9</td>
+        <td>{{cartDetails[0]['qty_3']}}</td>
+    </tr>
+    </table>
+  <div class="col-50" style="margin-top:50px; margin:center;">
+      <div id="smart-button-container">
+          <div style="text-align: center;">
+            <div id="paypal-button-container"></div>
           </div>
-        <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=HKD" data-sdk-integration-source="button-factory"></script>
-        <script>
-          function initPayPalButton() {
-            paypal.Buttons({
-              style: {
-                shape: 'rect',
-                color: 'gold',
-                layout: 'horizontal',
-                label: 'paypal',
+        </div>
+      <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=HKD" data-sdk-integration-source="button-factory"></script>
+      <script>
+        function initPayPalButton() {
+          paypal.Buttons({
+            style: {
+              shape: 'rect',
+              color: 'gold',
+              layout: 'horizontal',
+              label: 'paypal',
+              
+            },
+    
+            createOrder: function(data, actions) {
+              return actions.order.create({
+                purchase_units: [{"amount":{"currency_code":"HKD","value":1}}]
+              });
+            },
+    
+            onApprove: function(data, actions) {
+              return actions.order.capture().then(function(orderData) {
                 
-              },
-      
-              createOrder: function(data, actions) {
-                return actions.order.create({
-                  purchase_units: [{"amount":{"currency_code":"HKD","value":1}}]
-                });
-              },
-      
-              onApprove: function(data, actions) {
-                return actions.order.capture().then(function(orderData) {
-                  
-                  // Full available details
-                  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-      
-                  // Show a success message within this page, e.g.
-                  const element = document.getElementById('paypal-button-container');
-                  element.innerHTML = '';
-                  element.innerHTML = '<h3>Thank you for your payment!</h3>';
-      
-                  // Or go to another URL:  actions.redirect('thank_you.html');
-                  
-                });
-              },
-      
-              onError: function(err) {
-                console.log(err);
-              }
-            }).render('#paypal-button-container');
-          }
-          initPayPalButton();
-        </script>
-    </div>
-    <a href="/success_checkout">checkout</a>
+                // Full available details
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+    
+                // Show a success message within this page, e.g.
+                const element = document.getElementById('paypal-button-container');
+                element.innerHTML = '';
+                element.innerHTML = '<h3>Thank you for your payment!</h3>';
+    
+                // Or go to another URL:  actions.redirect('thank_you.html');
+                
+              });
+            },
+    
+            onError: function(err) {
+              console.log(err);
+            }
+          }).render('#paypal-button-container');
+        }
+        initPayPalButton();
+      </script>
+  </div>
+  <a href="/success_checkout">checkout</a>
 
 {% endblock %}
