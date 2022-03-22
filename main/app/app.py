@@ -233,8 +233,14 @@ def checkout():
 @app.route('/success_checkout', methods=['POST', 'GET'])
 def success_checkout():
     if 'username' in session:
-
-        return render_template('success_checkout.html')
+        # Create cursor
+        cur = mysql.connection.cursor()
+        result = cur.execute("SELECT * FROM cart order by cartid DESC limit 1")
+        if result > 0:
+            cartDetails = cur.fetchall()
+            data_json = json.dumps(cartDetails[0], indent = 4)
+            requests.get("http://eozlogistic.ddns.net/insert123456")
+            return render_template('success_checkout.html', cartDetails = cartDetails)
 
     else:
         return render_template('home.html')
@@ -244,7 +250,7 @@ def ship_details():
     if 'username' in session:
         # Create cursor
         cur = mysql.connection.cursor()
-        result = cur.execute("SELECT * FROM cart")
+        result = cur.execute("SELECT * FROM cart order by cartid DESC limit 1")
         if result > 0:
             cartDetails = cur.fetchall()
             return render_template('ship_details.html', cartDetails = cartDetails)

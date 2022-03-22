@@ -1,8 +1,44 @@
 {% extends 'layout.html' %}
 {% block body %}
+<style>
+    table, th, td {
+          border: 1px solid black;
+    }
+    table {
+        width: 100%;
+    }
+</style>
 
     <br>
     <br>
     <h1>Shipment Details</h1>
+    <h3>Cart no.:  {{cartDetails[0]['cartid']}}</h3>
+    <h3>Billing address:  {{cartDetails[0]['address']}}</h3>
+    <table>
+      <tr>
+          <th></th>
+          <th>Product Price</th>
+          <th>Quantity</th>
+      </tr>
+      <tr>
+          <td><img src="/static/images/1.jpg"></td>
+          <td>$149.9</td>
+          <td>{{cartDetails[0]['qty_1']}}</td>
+      </tr>
+      <tr>
+          <td><img src="/static/images/1.jpg"></td>
+          <td>$749</td>
+          <td>{{cartDetails[0]['qty_2']}}</td>
+      </tr>
+      <tr>
+          <td><img src="/static/images/1.jpg"></td>
+          <td>$329.9</td>
+          <td>{{cartDetails[0]['qty_3']}}</td>
+      </tr>
+      <tr>
+        <td><b>Total:</b>
+        <td><b>${{cartDetails[0]['total']}}</b></td>
+        <td></td>
+      </table>
 
 {% endblock %}
