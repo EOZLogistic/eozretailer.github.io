@@ -124,6 +124,7 @@
     {% endif %} 
     <br>
     <br> 
+    {% if not username %}
         <div class="container-fluid" style="background-color: #c9f6ee; margin-top: -30px; margin-left:-110px; width: 1330px; height: 430px;">
             <div class="card" style="position: absolute;
             width: 178px;
@@ -188,11 +189,12 @@
         </a>
     </div>
 </div> 
-
+{% endif %}
 </div> 
     <div class="container-fluid">
         <div class="container">
             <table id="cert">
+                {% if not username %}
                 <tr>
                     <td>
                         <img src='static/images/cert1.png'>&nbsp
@@ -211,9 +213,11 @@
                         <b>24 /7 Support</b><br> &nbspDedicated support
                     </td>
                 </tr>
+                {% endif %}
             </table>
         </div>
     </div>
+    
 <main>
     <table id="cate">
         <tr>
