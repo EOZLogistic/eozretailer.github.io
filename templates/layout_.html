@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet"href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}">
+</head>
+<body>
+    {% include 'includes/_navbar_logged_in.html' %}
+
+    <div class="container"> 
+        {% include 'includes/_message.html' %}
+        {% block body %}
+        {% endblock %}
+    </div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <footer class="page-footer font-small black pt-4">
+
+        <div class="container-fluid text-center text-md-left"></div>
+
+        <div class="row">
+            <div class="col-md-6" mt-md-0 mt-3>
+
+            <h5 class="text-uppercase"></h5>
+            <p></p>
+            </div>
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <div class="col-md-3 mb-md-0 mb-3"></div>
+
+            <div class="col-md-3 mb-md-0 mb-3">
+                
+                <h5 class="text-uppercase"></h5>
+
+                <ul class="list-unstyled">
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </ul>
+            </div>
+        </div>
+    </div>
+<div class="footer-copyright text-center py-3">© 2022 Copyright: <a href="/home">EOZ RETAILER</a>
+</div>
+</footer>
+</body>
+</html>

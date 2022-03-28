@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+    .card img{
+        width:20%;
+    }
+    .card button{
+        float: right;
+        border-style: solid;
+        border-color: black;
+        background-color: #00DAB3;
+        font-weight: bold;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+</style>
+<br>
+<br>
+<div class="col-sm-12">
+    <div class="card">
+        <img src="/static/images/1p.png" alt="product001" class="card-img-left zoom">
+        <div class="card-body text-right">
+            <h1>Flying Pan</h1>
+            <h2 id=2>Flying Pan</h2>
+            <h2 id=3>Flying Pan</h2>
+            <h2 id=4>Flying Pan</h2>
+
+            <button>BUY NOW </button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+<script>
+eozlogistic='http://eozlogistic.ddns.net/'
+$.getJSON(eozlogistic+"/api"+window.location.pathname.substring(5), function( data ) {
+console.log(data)
+ $('.card img').attr('src',eozlogistic+'static/'+data.Image)
+ $('h1').html(data.Name)
+ $('#2').html(data.Description)
+ $('#3').html('Stocks left:    '+data.Quantity)
+ $('#4').html('$ '+data.Price)
+setInterval(function update(){
+$.getJSON(eozlogistic+"/api"+window.location.pathname.substring(5), function( data ) {
+$('.card img').attr('src',eozlogistic+'static/'+data.Image)
+ $('h1').html(data.Name)
+ $('#2').html(data.Description)
+ $('#3').html('Stocks left:    '+data.Quantity)
+ $('#4').html('$ '+data.Price)
+})
+}, 5000); 
+
+
+ })
+
+
+
+
+
+</script>
+{% endblock %}

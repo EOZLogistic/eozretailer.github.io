@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<style>
+table, th, td {
+border: 1px solid black;
+font-family: Roboto, serif;
+}
+table {
+width: 100%;
+}
+section{
+background-color: #C9F6EE;
+min-height: 50vh;
+height: fit-content;
+width: 100%;
+margin-top: 5%;
+position: relative;
+
+}
+section>div{
+background-color: #C9F6EE;
+width: 100%;
+padding: 2%;
+margin: 2%;
+position: relative;
+display: block;
+height: 100%;
+}
+aside{
+background-color: white;
+height: 100%;
+width: 100%;
+text-align: center;
+vertical-align: middle;
+align-items: center;
+padding: 5%;
+}
+aside button{
+background-color: #487068;
+padding: 2%;
+margin: 1%;
+border-radius: 10px;
+border: none;
+border-style: none;
+color: white;
+box-shadow: none;
+width: 30%;
+font-size: xx-large;
+}
+h2{white-space: nowrap;}
+p{display: inline-block;}
+</style>
+<div class="container-fluid" style="height: 75px; background-color: #9aecd5">
+<i class="fa fa-shopping-cart" style="height:50px; weight:40px; margin-left:10px; margin-top:30px;">
+<span style="
+font-family: Roboto, serif;
+font-style: normal;
+font-weight: bold;
+font-size: 18px; 
+color: #000000;">&nbsp&nbsp&nbspShopping Cart
+</span>
+</i>
+</div>
+<section>
+<div>
+<aside>
+<h1>Congratulation!!<br>
+Checkout Success!!<br></h1> 
+<img src=static/images/check.png><br>
+<h2>Order no. <p></p></h2> 
+<a href=http://eozlogistic.ddns.net/parcel><button>Go to Logistics</button></a><br>
+<a href='/'><button>Back</button></a>
+</aside>
+</div>
+</section>
+<script>
+$('p').html(localStorage.no)
+eozlogistic='http://eozlogistic.ddns.net/'
+$.ajax({url: eozlogistic+'insert'+localStorage.no,})
+</script>
+{% endblock %}

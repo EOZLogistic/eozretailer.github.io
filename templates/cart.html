@@ -1,0 +1,252 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=HKD" data-sdk-integration-source="button-factory"></script>
+<style>
+table, th, td {
+}
+table {
+width: 100%;
+}
+.container-fluid{
+width: 100%;
+}
+#l div,#r>div{
+background-color: #C9F6EE;
+padding: 5%;
+margin-top: 3%;
+}
+#l div{
+margin-right: 2%;
+}
+#l{width: 75%;}
+#r{width: 25%;}
+aside{
+margin-bottom: 2%;
+margin-top: 2%;
+padding: 2%;
+background-color: white;
+height: fit-content;
+height: 200px;
+
+}
+aside img{
+float: left;
+height: 185px;
+}
+r{
+float: right;
+white-space: nowrap;
+margin-right: 20%;
+}
+aside button{
+border: grey;
+border-style: solid;
+margin: 50%;
+padding: 50%;
+border-radius: 50%;
+padding-bottom: 50%;
+width: 50%;
+height: 0;
+right: 0;
+align-items: center;
+align-self: center;
+text-align: center;
+vertical-align: middle;
+line-height: 1px;
+font-weight: bold;
+font-size:xx-large;
+}
+b{
+display: block;
+}
+#r{
+display: inline-block;
+width: 100%;
+margin-top: 5%;
+}
+#r img{
+width: 30%;
+float: right;
+right: 0;
+}
+section{
+background-color: white;
+border-radius: 10px;
+padding: 1%;
+margin: 1%;
+font-weight: bold;
+}
+section input{
+width: 100%;
+}
+#r h1{
+text-decoration: underline;
+
+}
+#r button{
+width: 100%;
+background-color: #487068;
+padding: 5%;
+margin: 3%;
+margin-right: 0;
+border: none;
+color: white;
+font-size: xx-large;
+font-weight: bold;
+}
+label{
+width: 80%;
+}
+section table tr td:nth-child(2){
+text-align: right;
+}
+#paypal div{
+    position: relative;
+}
+#smart-menu{
+    display: none;
+}
+#l{
+    vertical-align: top;
+}
+</style>
+<br>
+<br>
+
+<div class="container-fluid" style="height: 75px; background-color: #9aecd5">
+<i class="fa fa-shopping-cart" style="height:50px; weight:40px; margin-left:10px; margin-top:30px;">
+<span style="position: absolute;
+font-family: Roboto, serif;
+font-style: normal;
+font-weight: bold;
+font-size: 18px; 
+color: #000000;">&nbsp&nbsp&nbspShopping Cart
+</span>
+</i>
+</div>
+<table>
+<tr>
+<td id=l>
+<div><b>Order no. <no></no></b>
+<container>
+
+</container>
+
+</div>
+</td>
+<td id=r>
+<div>
+<h1>Delivery Method</h1>
+<br>
+<br>
+
+<input type=radio name=d><label><img src=/static/images/d1.png><b>Locker Pick-up</b>Free Delivery FREE upon $150<br>Volume: 9.82/100%<br>Weight: 0.23/12KG</label><br>
+<input type=radio name=d><label><img src=/static/images/d2.png><b>Home Delivery</b>Free Delivery FREE upon $499</label><br>
+<input type=radio name=d><label><img src=/static/images/d3.png><b>Self Pick=up</b>Free Delivery</label><br>
+<input type=radio name=d><label><img src=/static/images/d4.png><b>EOZ Logistic Courier</b>FREE Delivery FREE upon $150<br>Volume: 9.82/100%<br>Weight: 0.23/12KG</label>
+<br>
+<br>
+<section>
+<h1>Cart Summary</h1>
+<table>
+<tr><td>Product Subtotal</td><td id=s>$0</td></tr>
+<tr><td>Promo Code</td><td id=p>No Discount</td></tr>
+<tr><td colspan=2><input placeholder='Enter Promocode...'></td></tr>
+<tr><td>Delivery Fee</td><td>$30.00</td></tr>
+<tr><td>Bill Total</td><td id=t>$0</td></tr>
+
+</table>
+
+
+</section>
+
+</div>
+<button>Proceed to Checkout</button>
+<div id="paypal"></div>
+</td>
+</tr>
+</table>
+
+<script>
+    var data
+    eozlogistic='http://eozlogistic.ddns.net/'
+$.getJSON(eozlogistic+"/api", function( data ) {
+    console.log(data)
+$('no').html(localStorage.no)
+if (typeof localStorage.cart=='undefined'&&localStorage.cart==null) localStorage.cart='#' 
+cart=localStorage.cart.split('#')
+cart.pop()
+$('#count').show().html(cart.length)
+if (true){
+    cart.forEach(function(i){
+        if(i!=''){
+if($('#'+i).length==0){
+$('container').append('<aside id='+i+'><img src='+eozlogistic+'static/'+data[i].Image
++'></img><h1>'+data[i].Name+'<h1><h2>'+data[i].Description+'</h2><h2>$'+data[i].Price+'</h2><r><button>+</button><qty>1</qty><button>-</button></r></aside>')   
+}else{
+$('#'+i).find('qty').html(parseInt($('#'+i).find('qty').html())+1)
+}}
+})}
+update()
+
+
+
+
+
+
+
+var promo=0
+
+$('aside button').click(function(){
+if($(this).html()=='+') {
+$('#count').html(parseInt($('#count').html())+1)
+$(this).parent().find('qty').html(parseInt($(this).parent().find('qty').html())+1)}
+if($(this).html()=='-' &&$(this).parent().find('qty').html()!='0'){
+$('#count').html(parseInt($('#count').html())-1)
+$(this).parent().find('qty').html(parseInt($(this).parent().find('qty').html())-1)}
+update()
+})
+$('section input').keyup(function(){
+if($(this).val()=='MARCCUTE') {
+$('#p').html('$1000')
+promo=1000
+}else{
+$('#p').html('No Discount')
+promo=0
+}
+update()
+})
+function update(){
+sub=0
+$('aside').each(function(){sub+=data[$(this).attr('id')].Price*parseInt($(this).find('qty').html())})
+$('#s').html('$'+sub.toFixed(2))
+total=(sub+30-promo).toFixed(2)
+  $('#t').html('$'+total)
+}
+
+paypal.Buttons({
+style: {shape: 'rect',color: 'gold',layout: 'horizontal',label: 'paypal',},
+createOrder: function(data, actions) {
+return actions.order.create({
+purchase_units: [{"amount":{"currency_code":"HKD","value":total}}]
+});
+},
+onApprove: function(data, actions) {
+return actions.order.capture().then(function(orderData) {
+console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+const element = document.getElementById('paypal-button-container');
+element.innerHTML = '';
+element.innerHTML = '<h3>Thank you for your payment!</h3>';
+});
+},
+onError: function(err) {console.log(err);}
+}).render('#paypal');
+$('#r>button').click(function(){
+    window.location.pathname='checkout'
+})
+
+
+})
+
+</script>
+{% endblock %}

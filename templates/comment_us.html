@@ -1,0 +1,21 @@
+{% extends 'layout_.html' %}
+{% block body %}
+<style>
+</style>
+<br>
+<br>
+<div class="container">
+
+    <form class="form-comment" method="POST" action="">
+        {% from "includes/_formhelpers.html" import render_field %}
+        <h2 class="form-comment-heading">Leave us a Comment!</h2>
+        <br><br>
+        <div class="form-group">
+            {{render_field (form.comment, class="form-control")}}
+        </div>
+        <br><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        
+    </form>
+</div>
+{% endblock %}

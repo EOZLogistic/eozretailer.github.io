@@ -1,0 +1,14 @@
+.shop {
+    font-family: "Garamond", Serif;
+    font-style: oblique;
+}
+
+.carousel-inner img {
+    width: 100px;
+    height: 100px;
+}
+
+.card-title {
+    flex:1;
+    justify-content: flex-start;    
+}
